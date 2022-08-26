@@ -1,0 +1,62 @@
+﻿@model Project
+@{
+    Layout = "_AddLayout";
+    ViewBag.Title = "Add Project";
+}
+<form asp-action="AddProject" method="post">
+    <div class="form-group">
+        <label asp-for="ProjectName"></label>
+        <input class="form-control" asp-for="ProjectName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerCompanyName"></label>
+        <input class="form-control" asp-for="CustomerCompanyName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PerformerCompanyName"></label>
+        <input class="form-control" asp-for="PerformerCompanyName"  />
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate"></label>
+        <input class="form-control" asp-for="StartDate" />
+    </div>
+    @*TODO: Check the done date*@
+    <div class="form-group">
+        <label asp-for="DoneDate"></label>
+        <input class="form-control" asp-for="DoneDate" />
+    </div>
+     <br/>
+    <div class="form-group">
+         <select class="form-control" asp-for="HeadOfProjectID">
+            <option disabled selected>Choose a head of project</option>
+            @foreach (var employee in ViewBag.AllEmployees)
+            {
+                @if (employee.HeadOfProjectID == 0)
+                {
+                    <option value="@employee.EmployeeID">@employee.Name  @employee.SecondName</option>   
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <label>Priority:</label><br>
+        @Html.RadioButtonFor(model => model.Priority, Priority.Low) @Priority.Low<br/>
+        @Html.RadioButtonFor(model => model.Priority, Priority.Medium) @Priority.Medium<br/>
+        @Html.RadioButtonFor(model => model.Priority, Priority.High) @Priority.High<br/>
+        @Html.RadioButtonFor(model => model.Priority, Priority.VeryHigh) @Priority.VeryHigh<br/>
+    </div>
+    <br/>
+    <div class="form-group">
+        <select class="form-control" asp-for="ChoosedEmployeeID">
+            <option disabled selected>Choose the employee</option>
+            @foreach (var employee in ViewBag.AllEmployees)
+            {
+                <option value="@employee.EmployeeID">@employee.Name  @employee.SecondName</option>
+            }
+        </select>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary btn-sm" type="submit">Add</button>
+        <a asp-action="Index" class="btn btn-primary btn-sm">Cancel</a>
+    </div>
+</form>

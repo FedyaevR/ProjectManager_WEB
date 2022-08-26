@@ -1,0 +1,42 @@
+﻿@model IQueryable<Project>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Projects";
+}
+<table class="table table-bordered table-striped table-sm">
+    <tr><th>ID</th><th>Project Name</th><th>Customer Company</th><th>Performer Company</th><th>Start Date</th><th>Done Date</th><th>Priority</th><th>Employee on project</th><th>Head of project</th></tr>
+    @foreach (var project in Model)
+    {
+        <tr>
+            <td>@project.ProjectID</td>
+            <td>@project.ProjectName</td>
+            <td>@project.CustomerCompanyName</td>
+            <td>@project.PerformerCompanyName</td>
+            <td>@project.StartDate</td>
+            <td>@project.DoneDate</td>
+            <td>@project.Priority</td>
+            @if (project.EmployeeProject.Count > 0)
+            {
+                <td>
+                    @foreach (var p in project.EmployeeProject)
+                    {
+                        if (p.ProjectID == p.Employee.ChoosedProjectID || p.ProjectID == p.Project.ProjectID)
+                        {
+                            <p>@p.Employee.Name @p.Employee.SecondName</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var p in project.EmployeeProject)
+                    {
+                        if (p.EmployeeID == project.HeadOfProjectID || p.Employee.HeadOfProjectID == project.ProjectID)
+                        {
+                            <p>@p.Employee.Name @p.Employee.SecondName</p>
+                        }
+                    }
+                </td>
+            }
+        </tr>
+    }
+</table>
+<a asp-action="AddProject" class="btn btn-primary">Add Project</a>

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        .input-validation-error { border-color:red; background-color: #fee;}
+    </style>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#phone").inputmask('999 999-99-99');
+        });
+    </script>
+</head>
+<body class="m-1 p-1">
+    <div class="navbar navbar-inverse navbark-dark bg-dark">
+        <h3 class="text-white">@ViewBag.Title</h3>
+    </div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success mt-1">@TempData["message"]</div>
+    }
+    @RenderBody()
+</body>
+</html>

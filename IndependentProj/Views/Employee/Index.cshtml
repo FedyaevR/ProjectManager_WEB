@@ -1,0 +1,42 @@
+﻿@model IQueryable<Employee>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Employees";
+}
+
+<table class="table table-bordered table-striped table-sm">
+    <tr><th>ID</th><th>Name</th><th>Second Name</th><th>Email</th><th>Phone</th><th>Project</th><th>Head of project</th></tr>
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.EmployeeID</td>
+            <td>@employee.Name @employee.SecondName</td>
+            <td>@employee.SecondName</td>
+            <td>@employee.Email</td>
+            <td>@employee.PhoneNumber</td>
+            @if (employee.EmployeeProject.Count > 0)
+            {
+                <td>
+                    @foreach (var p in employee.EmployeeProject)
+                    {
+                        if (p.ProjectID == p.Employee.ChoosedProjectID || p.ProjectID == p.Project.ProjectID)
+                        {
+                            <p>@p.Project.ProjectName</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var e in employee.EmployeeProject)
+                    {
+                        if (e.ProjectID == employee.HeadOfProjectID || e.Project.HeadOfProjectID == employee.EmployeeID)
+                        {
+                            <p>@e.Project.ProjectName</p>
+                        }                    
+                    }
+                </td>
+
+            }
+        </tr>
+    }
+</table>
+<a asp-action="AddEmployee" class="btn btn-primary">Add Employee</a>

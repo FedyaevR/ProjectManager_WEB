@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body class="m-1 p-1">
+    <div class="navbar navbar-inverse navbar-dark bg-dark" role="navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand">Project Archive</a>
+            <p class="text-white">@ViewBag.Title</p>
+            <div class="d-flex text-center">
+                <a class="btn btn-secondary btn-sm navbar-btn" asp-controller="Project" asp-action="Index">Project List</a>
+                <a class="btn btn-secondary btn-sm navbar-btn" asp-controller="Employee" asp-action="Index">Employee List</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
