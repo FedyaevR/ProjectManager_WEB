@@ -5,6 +5,7 @@
         IQueryable<Employee> Employees { get; }
         IQueryable<Project> AllProjects { get; }
         void Add(Employee employee);
+        void Edit(Employee employee);
         void Delete(Employee employee);
         IQueryable<Employee> Show(Employee employee);
     }

@@ -1,9 +1,9 @@
 ﻿@model Project
 @{
     Layout = "_AddLayout";
-    ViewBag.Title = "Add Project";
+    ViewBag.Title = "Edit Project";
 }
-<form asp-action="AddProject" method="post">
+<form asp-action="EditProject" method="post">
     <div class="form-group">
         <label asp-for="ProjectName"></label>
         <input class="form-control" asp-for="ProjectName" />
@@ -56,7 +56,8 @@
         </select>
     </div>
     <div class="text-center">
-        <button class="btn btn-primary btn-sm" type="submit">Add</button>
+        <input type="hidden" name="ProjectID" value="@Model.ProjectID" />
+        <button class="btn btn-primary btn-sm" type="submit">Save</button>
         <a asp-action="Index" class="btn btn-primary btn-sm">Cancel</a>
     </div>
 </form>

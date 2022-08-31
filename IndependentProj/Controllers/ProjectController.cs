@@ -36,6 +36,27 @@ namespace IndependentProj.Controllers
             }
             
         }
+        [HttpGet]
+        public ViewResult EditProject(int projectId)
+        {
+            ViewBag.AllEmployees = _repository.AllEmployees;
+            return View( _repository.Projects.FirstOrDefault(p => p.ProjectID == projectId));
+        }
+        [HttpPost]
+        public IActionResult EditProject(Project project)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _repository.Edit(project);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(project);
+            }
+
+        }
     }
 
 }

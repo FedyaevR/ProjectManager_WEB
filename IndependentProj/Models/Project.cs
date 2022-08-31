@@ -20,6 +20,7 @@ namespace IndependentProj.Models
         public DateTime StartDate { get; set; } = DateTime.Parse("01-01-2005");
         [BindProperty]
         [DataType(DataType.Date)]
+        
         public DateTime DoneDate { get; set; } = DateTime.Parse("01-01-2005");
         [Required(ErrorMessage = "Choose the priority of project")]
         public Priority Priority { get; set; }

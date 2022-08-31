@@ -15,8 +15,29 @@
         public void Add(Project project)
         {
             project.EmployeeProject = new List<EmployeeProject>();
-            project.EmployeeProject.Add(new EmployeeProject { ProjectID = project.ProjectID, EmployeeID = AllEmployees.FirstOrDefault(p => p.EmployeeID == project.ChoosedEmployeeID).EmployeeID });
+            if(project.ChoosedEmployeeID != 0)
+            {
+                project.EmployeeProject.Add(new EmployeeProject { ProjectID = project.ProjectID, EmployeeID = AllEmployees.FirstOrDefault(p => p.EmployeeID == project.ChoosedEmployeeID).EmployeeID });
+            }
+           
             _context.Projects.Add(project);
+            _context.SaveChanges();
+        }
+        public void Edit(Project project)
+        {
+            Project dbEntry = _context.Projects.FirstOrDefault(p => p.ProjectID == project.ProjectID);
+            if (dbEntry != null)
+            {
+                dbEntry.ProjectName = project.ProjectName;
+                dbEntry.CustomerCompanyName = project.CustomerCompanyName;
+                dbEntry.PerformerCompanyName = project.PerformerCompanyName;
+                dbEntry.StartDate = project.StartDate;
+                dbEntry.DoneDate = project.DoneDate;
+                dbEntry.Priority = project.Priority;
+                dbEntry.HeadOfProjectID = project.HeadOfProjectID;
+                if(project.ChoosedEmployeeID != dbEntry.ChoosedEmployeeID) dbEntry.EmployeeProject = new List<EmployeeProject> { new EmployeeProject { ProjectID = project.ProjectID, EmployeeID = project.ChoosedEmployeeID } };
+                _context.Projects.Update(dbEntry);
+            }
             _context.SaveChanges();
         }
 

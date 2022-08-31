@@ -4,7 +4,8 @@
     ViewBag.Title = "Projects";
 }
 <table class="table table-bordered table-striped table-sm">
-    <tr><th>ID</th><th>Project Name</th><th>Customer Company</th><th>Performer Company</th><th>Start Date</th><th>Done Date</th><th>Priority</th><th>Employee on project</th><th>Head of project</th></tr>
+    <tr><th>ID</th><th>Project Name</th><th>Customer Company</th><th>Performer Company</th><th>Start Date</th><th>Done Date</th><th>Priority</th>
+        <th>Employee on project</th><th>Head of project</th><th>Actions</th></tr>
     @foreach (var project in Model)
     {
         <tr>
@@ -36,6 +37,12 @@
                     }
                 </td>
             }
+            <td>
+                <form asp-action="EditProject" method="get">
+                    <input type="hidden" name="ProjectID" value="@project.ProjectID">
+                    <button type="submit" class="btn btn-sm btn-link">Edit</button>
+                </form>
+            </td>
         </tr>
     }
 </table>
