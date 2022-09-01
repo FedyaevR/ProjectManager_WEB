@@ -11,9 +11,9 @@ namespace IndependentProj.Models
             _context = context;
         }
 
-        public IQueryable<Employee> Employees => _context.Employees;
+        public IQueryable<Employee> Employees => _context.Employees.Include(e => e.EmployeeProject).ThenInclude(e => e.Project);
 
-        public IQueryable<Project> AllProjects => _context.Projects;
+        public IQueryable<Project> AllProjects => _context.Projects.Include(p => p.EmployeeProject).ThenInclude(p => p.Employee);
         
         
         public void Add(Employee employee)
@@ -44,10 +44,10 @@ namespace IndependentProj.Models
             }
             _context.SaveChanges();
         }
-        public void Delete(Employee employee)
+        public void Delete(int employeeId)
         {
-            _context.Employees.Remove(employee);
-            _context.SaveChanges();
+                _context.Remove(_context.Employees.FirstOrDefault(e => e.EmployeeID == employeeId));
+                _context.SaveChanges();
         }
 
         public IQueryable<Employee> Show(Employee employee)

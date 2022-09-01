@@ -39,11 +39,11 @@
      <div class="form-group" >
         <select class="form-control" asp-for="HeadOfProjectID" >
             <option selected value=0>Choose a head of project</option>
-            @foreach (var project in ViewBag.AllProjects)
+            @foreach (var project in ViewBag.NoHeadOfProject)
             {
-                @if (project.HeadOfProjectID == 0)
+                if (project.HeadOfProjectID == 0)
                 {
-                     <option value="@project.ProjectID">@project.ProjectName</option>
+                    <option value="@project.ProjectID">@project.ProjectName</option>                
                 }
             }
         </select>

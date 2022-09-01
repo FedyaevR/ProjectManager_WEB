@@ -1,4 +1,6 @@
-﻿namespace IndependentProj.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace IndependentProj.Models
 {
     public class EFProjectRepository : IProjectRepository
     {
@@ -7,9 +9,9 @@
         {
             _context = context;
         }
-        public IQueryable<Project> Projects => _context.Projects;
+        public IQueryable<Project> Projects => _context.Projects.Include(p => p.EmployeeProject).ThenInclude(p => p.Employee);
 
-        public IQueryable<Employee> AllEmployees => _context.Employees;
+        public IQueryable<Employee> AllEmployees => _context.Employees.Include(e => e.EmployeeProject).ThenInclude(e => e.Project);
         
 
         public void Add(Project project)
@@ -41,9 +43,10 @@
             _context.SaveChanges();
         }
 
-        public void Delete(Project project)
+        public void Delete(int projectId)
         {
-            _context.Remove(project);
+
+            _context.Remove(_context.Projects.FirstOrDefault(p => p.ProjectID == projectId));
             _context.SaveChanges();
         }
 

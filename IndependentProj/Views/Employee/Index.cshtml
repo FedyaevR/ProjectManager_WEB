@@ -34,11 +34,19 @@
                         }                    
                     }
                 </td>
+            }else
+            {
+                <td><p></p></td>
+                <td><p></p></td>
             }
             <td>
                 <form asp-action="EditEmployee" method="get">
                     <input type="hidden" name="EmployeeID" value="@employee.EmployeeID"/>
                     <button type="submit" class="btn btn-sm btn-link">Edit</button>
+                </form>
+                <form asp-action="DeleteEmployee" method="post">
+                    <input type="hidden" name="EmployeeID" value="@employee.EmployeeID">
+                    <button type="submit" class="btn btn-sm btn-link">Delete</button>
                 </form>
             </td>
 

@@ -29,12 +29,11 @@
     <div class="form-group">
          <select class="form-control" asp-for="HeadOfProjectID">
             <option  selected value=0 >Choose a head of project</option>
-            @foreach (var employee in ViewBag.AllEmployees)
+            @foreach (var employee in ViewBag.NoHeadOfProject)
             {
-                @if (employee.HeadOfProjectID == 0)
-                {
-                    <option value="@employee.EmployeeID">@employee.Name  @employee.SecondName</option>   
-                }
+
+                 <option value="@employee.EmployeeID">@employee.Name  @employee.SecondName</option>   
+                
             }
         </select>
     </div>

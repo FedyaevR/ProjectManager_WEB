@@ -12,10 +12,11 @@ namespace IndependentProj.Controllers
             _repository = repository;
 
         }
-        public ViewResult Index() => View(_repository.Employees.Include(e => e.EmployeeProject).ThenInclude(e => e.Project));
+        public ViewResult Index() => View(_repository.Employees);//.Include(e => e.EmployeeProject).ThenInclude(e => e.Project)
         public ViewResult AddEmployee() 
         {
             ViewBag.AllProjects = _repository.AllProjects;
+            ViewBag.NoHeadOfProject = _repository.AllProjects.Where(p => p.EmployeeProject.All(p => p.Employee.HeadOfProjectID != p.ProjectID)); // ???
             return View(new Employee());
         }
 
@@ -37,6 +38,7 @@ namespace IndependentProj.Controllers
         public ViewResult EditEmployee(int employeeId)
         {
             ViewBag.AllProjects = _repository.AllProjects;
+            ViewBag.NoHeadOfProject = _repository.AllProjects.Where(p => p.EmployeeProject.All(p => p.Employee.HeadOfProjectID != p.ProjectID));
             return View(_repository.Employees.FirstOrDefault(e => e.EmployeeID == employeeId));
         }
         [HttpPost]
@@ -51,6 +53,12 @@ namespace IndependentProj.Controllers
             {
                 return View(employee);
             }
+        }
+        [HttpPost]
+        public RedirectToActionResult DeleteEmployee(int employeeId)
+        {
+            _repository.Delete(employeeId);
+            return RedirectToAction("Index");
         }
     }
 }
