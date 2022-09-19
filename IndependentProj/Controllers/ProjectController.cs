@@ -65,6 +65,26 @@ namespace IndependentProj.Controllers
             _repository.Delete(projectId);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ViewResult OrderByPriority(Priority priority)
+        {
+            if(priority != _repository.Projects.Min(p => p.Priority)) return View("Index", _repository.Projects.OrderBy(p => p.Priority));
+            else return View("Index", _repository.Projects.OrderByDescending(p => p.Priority));
+        }
+        [HttpGet]
+        public ViewResult OrderByStartDate(DateTime date)
+        {
+            if (date != _repository.Projects.Min(p => p.StartDate)) return View("Index", _repository.Projects.OrderBy(p => p.StartDate));
+            else return View("Index", _repository.Projects.OrderByDescending(p => p.StartDate));
+        }
+        [HttpGet]
+        public ViewResult FilterDate(DateTime startDate_1, DateTime startDate_2)
+        {
+            var re = startDate_1;
+            var res = startDate_2;
+
+            return View("Index");
+        }
     }
 
 }

@@ -50,9 +50,5 @@ namespace IndependentProj.Models
             _context.SaveChanges();
         }
 
-        public IQueryable<Project> Show(Project employee)
-        {
-            return null;
-        }
     }
 }

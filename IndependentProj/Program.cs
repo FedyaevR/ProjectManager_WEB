@@ -28,13 +28,14 @@ app.UseMvc(routes =>
 {
     routes.MapRoute(name: null, template: "{controller}/{action}/{id?}");
     routes.MapRoute(
+     name: null,
+     template: "{controller=Project}/{action=Index}/{id?}"
+     );
+    routes.MapRoute(
         name: null,
         template: "{controller=Employee}/{action=Index}/{id?}"
         );
-    routes.MapRoute(
-        name: null,
-        template: "{controller=Project}/{action=Index}/{id?}"
-        );
+ 
    
 });
 

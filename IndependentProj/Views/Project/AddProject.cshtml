@@ -24,7 +24,7 @@
         <div><span asp-validation-for="StartDate" class="text-danger"></span></div>
         <input class="form-control" asp-for="StartDate" />
     </div>
-    @*TODO: Check the done date*@
+    @*TODO: Remove the done date*@
     <div class="form-group">
         <label asp-for="DoneDate"></label>
         <div><span asp-validation-for="DoneDate" class="text-danger"></span></div>
@@ -40,7 +40,6 @@
                 {
                     <option value="@employee.EmployeeID">@employee.Name  @employee.SecondName</option>   
                 }
-                
             }
         </select>
     </div>

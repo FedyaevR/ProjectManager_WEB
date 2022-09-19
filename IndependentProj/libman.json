@@ -1,10 +1,14 @@
 {
   "version": "1.0",
   "defaultProvider": "cdnjs",
-  "libraries": [{
-  "provider": "cdnjs",
-  "library": "jquery.inputmask@5.0.7",
-  "destination": "wwwroot/lib/jquery.inputmask/"
-}
-]
+  "libraries": [
+    {
+      "library": "jquery.inputmask@5.0.7",
+      "destination": "wwwroot/lib/jquery.inputmask/"
+    },
+    {
+      "library": "font-awesome@6.2.0",
+      "destination": "wwwroot/lib/font-awesome/"
+    }
+  ]
 }

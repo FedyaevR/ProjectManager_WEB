@@ -46,13 +46,9 @@ namespace IndependentProj.Models
         }
         public void Delete(int employeeId)
         {
-                _context.Remove(_context.Employees.FirstOrDefault(e => e.EmployeeID == employeeId));
-                _context.SaveChanges();
+            _context.Remove(_context.Employees.FirstOrDefault(e => e.EmployeeID == employeeId));
+            _context.SaveChanges();
         }
 
-        public IQueryable<Employee> Show(Employee employee)
-        {
-            return _context.Employees;
-        }
     }
 }

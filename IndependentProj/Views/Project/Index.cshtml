@@ -4,7 +4,31 @@
     ViewBag.Title = "Projects";
 }
 <table class="table table-bordered table-striped table-sm">
-    <tr><th>ID</th><th>Project Name</th><th>Customer Company</th><th>Performer Company</th><th>Start Date</th><th>Done Date</th><th>Priority</th>
+     <tr>
+            <td><p></p></td>
+            <td><p></p></td>
+            <td><p></p></td>
+            <td><p></p></td>
+            <td>
+                <form asp-action="OrderByStartDate" method="get" class="text-center">
+                <input type="hidden" name="Date" value="@Model.FirstOrDefault().StartDate"/>
+                <button type="submit" class="fa-sharp fa-solid fa-up-down"></button>
+                </form>  
+            </td>
+            <td><p></p></td>
+            <td>
+                <form asp-action="OrderByPriority" method="get" class="text-center">
+                <input type="hidden" name="Priority" value="@Model.FirstOrDefault().Priority"/>
+                <button type="submit" class="fa-sharp fa-solid fa-up-down"></button>
+                </form>          
+            </td>
+            <td><p></p></td>
+            <td>
+            </td>
+        </tr>
+    <tr>
+        <th>ID</th><th>Project Name</th><th>Customer Company</th><th>Performer Company</th><th>Start Date</th><th>Done Date</th>
+        <th>Priority</th>
         <th>Employee on project</th><th>Head of project</th><th>Actions</th></tr>
     @foreach (var project in Model)
     {
@@ -52,6 +76,31 @@
                 </form>
             </td>
         </tr>
+      
     }
+     
 </table>
+<div class="modal fade" id="filter" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Filter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="FilterDate" method="get">
+                    <div class="mb-3">
+                        <label for="StartDate_1" class="col-from-label">Start Date 1:</label>
+                        <input type="date" class="form-control" id="StartDate_1" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="StartDate_2" class="col-from-label">Start Date 2:</label>
+                        <input type="date" class="form-control" id="StartDate_2"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <a asp-action="AddProject" class="btn btn-primary">Add Project</a>

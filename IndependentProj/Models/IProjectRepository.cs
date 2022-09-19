@@ -7,6 +7,5 @@
         void Add(Project project);
         void Edit(Project project);
         void Delete(int projectId);
-        IQueryable<Project> Show(Project employee);
     }
 }

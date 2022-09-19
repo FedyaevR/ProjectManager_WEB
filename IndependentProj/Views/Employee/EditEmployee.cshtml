@@ -28,7 +28,7 @@
     <br />
     <div class="form-group">
         <select class="form-control" asp-for="ChoosedProjectID">
-            <option selected value=0>Choose a project</option>
+            <option selected value=0>Appoint a project</option>
             @foreach (var item in ViewBag.AllProjects)
             {
                 <option value="@item.ProjectID">@item.ProjectName</option>
@@ -38,7 +38,7 @@
     <br />
      <div class="form-group" >
         <select class="form-control" asp-for="HeadOfProjectID" >
-            <option selected value=0>Choose a head of project</option>
+            <option selected value=0>Appoint a head of project</option>
             @foreach (var project in ViewBag.AllProjects)
             {
                 @if (project.HeadOfProjectID == 0)
